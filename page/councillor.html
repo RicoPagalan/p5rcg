@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Councillor - Takuto Maruki</title>
+  <link rel="icon" type="images/png" href="../images/persona5royal.png">
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #0f0f0f;
+      color: white;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #000;
+      padding: 14px 16px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 2px solid #c00;
+      box-shadow: 0 2px 12px rgba(255, 0, 0, 0.2);
+    }
+
+    /* LINK */
+    a {
+      text-decoration: none;
+      color: #fff;
+      display: inline-block;
+      margin: 12px 0 18px;
+      font-size: 14px;
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      padding: 70px 16px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* SECTION HEADINGS */
+    h2 {
+      margin-top: 28px;
+      border-left: 4px solid #c00;
+      padding-left: 10px;
+      font-size: 20px;
+    }
+
+    .note {
+      color: #c00;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    /* ========= BENEFITS TABLE ========= */
+
+    /* horizontal scroll container */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 16px;
+    }
+
+    /* keep rows in columns */
+    .confidant-table {
+      list-style: none;
+      min-width: 520px;
+      /* forces sideways scroll on small screens */
+    }
+
+    .confidant-row {
+      display: grid;
+      grid-template-columns: 90px 220px 1fr;
+      gap: 20px;
+      padding: 14px;
+      border-bottom: 1px solid #222;
+      align-items: start;
+      background: #111;
+      transition: 0.2s ease;
+    }
+
+    .confidant-row:hover {
+      background: #1a1f24;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+    }
+
+    .confidant-header {
+      font-weight: bold;
+      border-bottom: 2px solid #c00;
+      background: #000;
+    }
+
+    /* prevent squishing */
+    .confidant-row>span {
+      white-space: normal;
+    }
+
+    /* optional scrollbar styling */
+    .table-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .table-scroll::-webkit-scrollbar-thumb {
+      background: #c00;
+      border-radius: 4px;
+    }
+
+    .rank {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* ========= DIALOGUE TABLE ========= */
+
+    /* horizontal scroll wrapper (shared with benefits table) */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 16px;
+    }
+
+    /* keep columns — no stacking */
+    .rank-dialogue {
+      list-style: none;
+      min-width: 720px;
+      /* forces side scroll on phones */
+    }
+
+    .rank-row {
+      display: grid;
+      grid-template-columns: 140px repeat(3, 1fr);
+      gap: 20px;
+      padding: 16px 14px;
+      border-bottom: 1px solid #222;
+      background: #111;
+      align-items: center;
+      transition: 0.2s ease;
+    }
+
+    .rank-row:hover {
+      background: #1a1f24;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+    }
+
+    .rank-label {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* prevent text from collapsing */
+    .rank-row>span {
+      min-width: 0;
+    }
+
+    /* optional mobile touch feedback */
+    .rank-row:active {
+      transform: scale(0.98);
+    }
+
+    .choice-cell {
+      padding-left: 10px;
+    }
+
+    /* ========= TABLET ========= */
+    @media (min-width: 600px) {
+      header {
+        font-size: 20px;
+        padding: 16px 20px;
+      }
+
+      main {
+        padding: 80px 20px 20px;
+      }
+
+      .confidant-row {
+        grid-template-columns: 80px 180px 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .rank-row {
+        grid-template-columns: 120px repeat(2, 1fr);
+        gap: 16px;
+        align-items: start;
+      }
+
+      .choice-cell {
+        padding-left: 0;
+      }
+    }
+
+    /* ========= DESKTOP ========= */
+    @media (min-width: 900px) {
+      header {
+        font-size: 22px;
+        padding: 18px 30px;
+      }
+
+      .confidant-row {
+        grid-template-columns: 90px 220px 1fr;
+        padding: 16px 14px;
+      }
+
+      .rank-row {
+        grid-template-columns: 140px repeat(3, 1fr);
+        padding: 16px 14px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+    }
+
+    .confidant-row:active,
+    .rank-row:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+
+<body>
+  <header>Takuto Maruki — Councillor</header>
+
+  <main>
+    <a href="../index.html">← Back to Confidants Lobby</a>
+
+    <p class="note">
+      *You must achieve Rank 9 before 11/17 in order to unlock true ending of
+      Persona 5 royal third semester.*
+    </p>
+
+    <h2>Benefits</h2>
+
+    <div class="table-scroll">
+      <ul class="confidant-table">
+        <li class="confidant-row confidant-header">
+          <span>Rank</span>
+          <span>Ability</span>
+          <span>Description</span>
+        </li>
+
+        <li class="confidant-row">
+          <span class="rank">2</span>
+          <span>Detox X</span>
+          <span>When Joker is inflicted with an ailment, he may recover
+            immediately.</span>
+        </li>
+
+        <li class="confidant-row">
+          <span class="rank">3</span>
+          <span>Flow</span>
+          <span>Chance to receive the effects of Charge and Concentrate at
+            thestart of battle.</span>
+        </li>
+
+        <li class="confidant-row">
+          <span class="rank">5</span>
+          <span>Mindfulness</span>
+          <span>Chance to restore Joker's SP when it is low.</span>
+        </li>
+
+        <li class="confidant-row">
+          <span class="rank">7</span>
+          <span>Quick Flow</span>
+          <span>Increases the chances of Flow succeeding.</span>
+        </li>
+
+        <li class="confidant-row">
+          <span class="rank">9</span>
+          <span>Detox DX</span>
+          <span>Increases the chances of Detox X succeeding.</span>
+        </li>
+
+        <li class="confidant-row">
+          <span class="rank">Rank Max</span>
+          <span>Wakefulness</span>
+          <span>Raises the SP recovered from Mindfulness.</span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="note">*Equip Councillor Persona*</p>
+
+    <h2>Rank 2 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">Didn't have much choice. +0</span>
+          <span class="choice-cell">We made a deal. +2</span>
+          <span class="choice-cell">I'm a little nervous. +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">It's in the past. +0</span>
+          <span class="choice-cell">I'm doing okay now. +0</span>
+          <span class="choice-cell">So much for privacy. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">But it sounds right. +3</span>
+          <span class="choice-cell">Yep. +2</span>
+          <span class="choice-cell">Kinda creeping me out here. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">So... what? +0</span>
+          <span class="choice-cell">I'll need more details. +0</span>
+          <span class="choice-cell">Uh... +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 5</span>
+          <span class="choice-cell">Well, okay. +2</span>
+          <span class="choice-cell">Better make it worth it. +0</span>
+          <span class="choice-cell">Why me, though? +0</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 3 Choices</h2>
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">So they have, huh? +2</span>
+          <span class="choice-cell">You worry too much. +0</span>
+          <span class="choice-cell">Thanks to you, probably. +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">Of course. +2</span>
+          <span class="choice-cell">Yeah, for our deal. +2</span>
+          <span class="choice-cell">I forgot. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">When someone betrays me. +0</span>
+          <span class="choice-cell">When I lie. +0</span>
+          <span class="choice-cell">When I get punched. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">That one seems necessary +2</span>
+          <span class="choice-cell">We'd be better off without it. +0</span>
+          <span class="choice-cell">It's a seed for new loves. +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 5</span>
+          <span class="choice-cell">Did that help? +2</span>
+          <span class="choice-cell">Don't worry about it. +2</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">Good work over there. +2</span>
+          <span class="choice-cell">So you're actually working? +0</span>
+          <span class="choice-cell">Getting to your research now? +0</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 4 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">Where's this coming from? +0</span>
+          <span class="choice-cell">What are you talking about? +0</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">I know, right...? +3</span>
+          <span class="choice-cell">It's not the worst. +0</span>
+          <span class="choice-cell">Talk about a reward. +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">That'd be great. +2</span>
+          <span class="choice-cell">Is that possible? +0</span>
+          <span class="choice-cell">Is that what you're researching? +3</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">...... +0</span>
+          <span class="choice-cell">Are you okay? +0</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 5</span>
+          <span class="choice-cell">That's a grand plan. +2</span>
+          <span class="choice-cell">You're so kind. +2</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 6</span>
+          <span class="choice-cell">That sounds fun. +3</span>
+          <span class="choice-cell">I'm not the "free labor" type. +0</span>
+          <span class="choice-cell">Nope. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">I'm completely fine. +2</span>
+          <span class="choice-cell">It's part of our deal, so... +2</span>
+          <span class="choice-cell">I'm struggling, to be honest. +0</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 5 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">This looks great! +3</span>
+          <span class="choice-cell">How old do you think I am? +0</span>
+          <span class="choice-cell">I could just take cash... +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">The one-cookie container. +0</span>
+          <span class="choice-cell">The ten-cookie container. +0</span>
+          <span class="choice-cell">It was a tie. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">I never considered that. +0</span>
+          <span class="choice-cell">They're getting played. +2</span>
+          <span class="choice-cell">You know, you're right. +3</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">My senses lied to me! +2</span>
+          <span class="choice-cell">Hey, as long as it tastes good. +2</span>
+          <span class="choice-cell">It's a little scary. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 5</span>
+          <span class="choice-cell">Not "truth" exactly... +0</span>
+          <span class="choice-cell">I guess so. +20</span>
+          <span class="choice-cell">I don't know. +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">I really don't mind. +2</span>
+          <span class="choice-cell">Come on, man. +0</span>
+          <span class="choice-cell">It was thought-provoking. +2</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 6 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">You wanted to talk? +0</span>
+          <span class="choice-cell">Another cup? +2</span>
+          <span class="choice-cell">We've got curry, too. +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">I can do that. +3</span>
+          <span class="choice-cell">It's a deal. +2</span>
+          <span class="choice-cell">I'm not up for this... +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">Isn't that enough? +0</span>
+          <span class="choice-cell">You need more than that? +0</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">So what CAN we do? +0</span>
+          <span class="choice-cell">It's a hard question... +0</span>
+          <span class="choice-cell">So give up. +2</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 5</span>
+          <span class="choice-cell">All hearts share some things. +0</span>
+          <span class="choice-cell">What if they're connected? +0</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 6</span>
+          <span class="choice-cell">Calm down. +0</span>
+          <span class="choice-cell">Where's this coming from? +0</span>
+          <span class="choice-cell">Cognitive pscience? +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">Calm down. +2</span>
+          <span class="choice-cell">What's going on? +2</span>
+          <span class="choice-cell">Heavy breathing? Pervert. +0</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 7 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">Should we change his heart? +0</span>
+          <span class="choice-cell">Let’s talk to Takeishi. +3</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">I think it’s cool, Ryuji. +3</span>
+          <span class="choice-cell">Wait, what? +2</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">Never know until you try +2</span>
+          <span class="choice-cell">It's out of our hands. +0</span>
+          <span class="choice-cell">We'll use force if we have to. +0</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 8 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">What if they start fighting? +0</span>
+          <span class="choice-cell">I doubt they’ll believe you. +0</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">Things turned out for the best. +3</span>
+          <span class="choice-cell">You deserved it. +3</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">All I did was watch. +3</span>
+          <span class="choice-cell">Are you gonna pay me back? +2</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">But I was just standing here… +2</span>
+          <span class="choice-cell">You weren’t cool though. +3</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">You did a great job. +0</span>
+          <span class="choice-cell">So. Closed case? +2</span>
+          <span class="choice-cell">We make a good team too. +0</span>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Rank 9 Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">Are you satisfied now? +3</span>
+          <span class="choice-cell">Not Running? +2</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">What did you say? +2</span>
+          <span class="choice-cell">Do you have any time for that? +2</span>
+          <span class="choice-cell">Don’t do it. +3</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 3</span>
+          <span class="choice-cell">You’re Right. +3</span>
+          <span class="choice-cell">I never realized that. +3</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 4</span>
+          <span class="choice-cell">I agree. +2</span>
+          <span class="choice-cell">Be more specific. +0</span>
+          <span class="choice-cell">And where is this place? +0</span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Followup</span>
+          <span class="choice-cell">Congratulations. +2</span>
+          <span class="choice-cell">Got him under control, how? +0</span>
+          <span class="choice-cell">Better watch out for them. +2</span>
+        </li>
+      </ul>
+    </div>
+    <h2>Rank Max Choices</h2>
+
+    <div class="table-scroll">
+      <ul class="rank-dialogue">
+        <li class="rank-row">
+          <span class="rank-label">Response 1</span>
+          <span class="choice-cell">I’m looking forward to it. +3</span>
+          <span class="choice-cell">We can’t lose either. +3</span>
+          <span class="choice-cell"></span>
+        </li>
+
+        <li class="rank-row">
+          <span class="rank-label">Response 2</span>
+          <span class="choice-cell">You’re welcome. +0</span>
+          <span class="choice-cell">It’s all because of you. +0</span>
+          <span class="choice-cell"></span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="note">
+      *Rank Max Arcana Unlocks The Ultimate Councillor Persona "".*
+    </p>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chariot - Sakamoto Ryuji</title>
+    <link rel="icon" type="images/png" href="../images/persona5royal.png">
+
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: #0f0f0f;
+        color: white;
+      }
+
+      /* HEADER */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #000;
+        padding: 14px 16px;
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 2px solid #c00;
+        box-shadow: 0 2px 12px rgba(255, 0, 0, 0.2);
+      }
+
+      /* LINK */
+      a {
+        text-decoration: none;
+        color: #fff;
+        display: inline-block;
+        margin: 12px 0 18px;
+        font-size: 14px;
+      }
+
+      /* MAIN LAYOUT */
+      main {
+        padding: 70px 16px 20px;
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      /* SECTION HEADINGS */
+      h2 {
+        margin-top: 28px;
+        border-left: 4px solid #c00;
+        padding-left: 10px;
+        font-size: 20px;
+      }
+
+      .note {
+        color: #c00;
+        margin-top: 12px;
+        font-size: 14px;
+      }
+
+      /* ========= BENEFITS TABLE ========= */
+
+      /* horizontal scroll container */
+      .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-top: 16px;
+      }
+
+      /* keep rows in columns */
+      .confidant-table {
+        list-style: none;
+        min-width: 520px; /* forces sideways scroll on small screens */
+      }
+
+      .confidant-row {
+        display: grid;
+        grid-template-columns: 90px 220px 1fr;
+        gap: 20px;
+        padding: 14px;
+        border-bottom: 1px solid #222;
+        align-items: start;
+        background: #111;
+        transition: 0.2s ease;
+      }
+
+      .confidant-row:hover {
+        background: #1a1f24;
+        box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+      }
+
+      .confidant-header {
+        font-weight: bold;
+        border-bottom: 2px solid #c00;
+        background: #000;
+      }
+
+      /* prevent squishing */
+      .confidant-row > span {
+        white-space: normal;
+      }
+
+      /* optional scrollbar styling */
+      .table-scroll::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .table-scroll::-webkit-scrollbar-thumb {
+        background: #c00;
+        border-radius: 4px;
+      }
+
+      .rank {
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      /* ========= DIALOGUE TABLE ========= */
+
+      /* horizontal scroll wrapper (shared with benefits table) */
+      .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-top: 16px;
+      }
+
+      /* keep columns — no stacking */
+      .rank-dialogue {
+        list-style: none;
+        min-width: 720px; /* forces side scroll on phones */
+      }
+
+      .rank-row {
+        display: grid;
+        grid-template-columns: 140px repeat(3, 1fr);
+        gap: 20px;
+        padding: 16px 14px;
+        border-bottom: 1px solid #222;
+        background: #111;
+        align-items: center;
+        transition: 0.2s ease;
+      }
+
+      .rank-row:hover {
+        background: #1a1f24;
+        box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+      }
+
+      .rank-label {
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      /* prevent text from collapsing */
+      .rank-row > span {
+        min-width: 0;
+      }
+
+      /* optional mobile touch feedback */
+      .rank-row:active {
+        transform: scale(0.98);
+      }
+
+      .choice-cell {
+        padding-left: 10px;
+      }
+
+      /* ========= TABLET ========= */
+      @media (min-width: 600px) {
+        header {
+          font-size: 20px;
+          padding: 16px 20px;
+        }
+
+        main {
+          padding: 80px 20px 20px;
+        }
+
+        .confidant-row {
+          grid-template-columns: 80px 180px 1fr;
+          gap: 16px;
+          align-items: start;
+        }
+
+        .rank-row {
+          grid-template-columns: 120px repeat(2, 1fr);
+          gap: 16px;
+          align-items: start;
+        }
+
+        .choice-cell {
+          padding-left: 0;
+        }
+      }
+
+      /* ========= DESKTOP ========= */
+      @media (min-width: 900px) {
+        header {
+          font-size: 22px;
+          padding: 18px 30px;
+        }
+
+        .confidant-row {
+          grid-template-columns: 90px 220px 1fr;
+          padding: 16px 14px;
+        }
+
+        .rank-row {
+          grid-template-columns: 140px repeat(3, 1fr);
+          padding: 16px 14px;
+        }
+
+        h2 {
+          font-size: 22px;
+        }
+      }
+
+      .confidant-row:active,
+      .rank-row:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>Sakamoto Ryuji — Chariot</header>
+
+    <main>
+      <a href="../index.html">← Back to Confidants Lobby</a>
+
+      <h2>Benefits</h2>
+
+      <div class="table-scroll">
+        <ul class="confidant-table">
+          <li class="confidant-row confidant-header">
+            <span>Rank</span>
+            <span>Ability</span>
+            <span>Description</span>
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">2</span>
+            <span>Punk Talk</span>
+            <span
+              >If negotiations with an upbeat Shadow fails, you can try
+              again.</span
+            >
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">3</span>
+            <span>Follow Up</span>
+            <span
+              >Chance to perform a follow-up attack if Joker’s attack does not
+              down the enemy.</span
+            >
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">4</span>
+            <span>Stealth Dash</span>
+            <span
+              >Makes you less likely to be found in the Metaverse while
+              dashing.</span
+            >
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">6</span>
+            <span>Harisen Recovery</span>
+            <span
+              >Chance to cure status ailments inflicted upon party
+              members.</span
+            >
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">7</span>
+            <span>Insta-kill</span>
+            <span
+              >When encountering a weak Shadow, you may destroy it
+              immediately.</span
+            >
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">8</span>
+            <span>Endure</span>
+            <span
+              >Chance to withstand an otherwise fatal attack with 1 HP
+              remaining.</span
+            >
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">9</span>
+            <span>Protect</span>
+            <span>Chance to shield Joker from an otherwise fatal attack.</span>
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">MAX</span>
+            <span>Second Awakening</span>
+            <span>Transforms his Persona into a mythological trickster.</span>
+          </li>
+
+          <li class="confidant-row">
+            <span class="rank">ROYAL</span>
+            <span>Third Awakening R</span>
+            <span
+              >Fuse with the mythological Trickster, awakening its true
+              power.</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <p class="note">*Equip Chariot Persona*</p>
+
+      <h2>Rank 2 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">I’m counting on you. +3</span>
+            <span class="choice-cell">You seem pretty excited. +3</span>
+            <span class="choice-cell">…Help with what? +2</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">What about them? +0</span>
+            <span class="choice-cell">And then you punched him? +0</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 3</span>
+            <span class="choice-cell">Do you want to go back? +2</span>
+            <span class="choice-cell">Do you regret it? +2</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">You’re already fast enough. +2</span>
+            <span class="choice-cell">Are your legs okay? +2</span>
+            <span class="choice-cell">It’s never too late, man. +2</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 3 Choices</h2>
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">Let’s not fight. +2</span>
+            <span class="choice-cell">Want to train with us? +0</span>
+            <span class="choice-cell">It’s nice to meet you. +0</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">Calm down, Ryuji. +3</span>
+            <span class="choice-cell">Just endure it. +2</span>
+            <span class="choice-cell">I’ll shut them up. +0</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">I can't exactly blame you. +2</span>
+            <span class="choice-cell">Violence is not the answer. +0</span>
+            <span class="choice-cell">Yeah, that'd be best. +0</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 4 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">Nakaoka? +0</span>
+            <span class="choice-cell">Are you worried about him? +2</span>
+            <span class="choice-cell">Just leave him be. +0</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">But you’re doing great. +3</span>
+            <span class="choice-cell">It’s not so bad. +2</span>
+            <span class="choice-cell">I know how you feel. +3</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 5 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">A towel? +2</span>
+            <span class="choice-cell">Protein powder? +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">You seem conflicted. +2</span>
+            <span class="choice-cell">Do you want to rejoin? +2</span>
+            <span class="choice-cell">You’re done with them, right? +0</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 3</span>
+            <span class="choice-cell">So he’s short? +2</span>
+            <span class="choice-cell">So he’s an asshole? +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">Don't worry. I gotcha. +2</span>
+            <span class="choice-cell">I haven't agreed to anything. +0</span>
+            <span class="choice-cell">Fine, but you're buying ramen. +0</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 6 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">Let’s stay here. +2</span>
+            <span class="choice-cell">How about Protein Lovers? +2</span>
+            <span class="choice-cell">We can train at my place. +3</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">You guys should trust Nakaoka. +3</span>
+            <span class="choice-cell">This is no time for arguing. +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 3</span>
+            <span class="choice-cell">Absolutely. +3</span>
+            <span class="choice-cell">More or less. +3</span>
+            <span class="choice-cell">Not in the slightest. +0</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 4</span>
+            <span class="choice-cell">I don’t get it. +0</span>
+            <span class="choice-cell">Can you explain that? +0</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 5</span>
+            <span class="choice-cell">…Huh? +0</span>
+            <span class="choice-cell">I really don’t understand. +0</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">Sounds like you two were close. +0</span>
+            <span class="choice-cell">Just like you. +0</span>
+            <span class="choice-cell">So he should've punched back? +2</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 7 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">Should we change his heart? +0</span>
+            <span class="choice-cell">Let’s talk to Takeishi. +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">I think it’s cool, Ryuji. +3</span>
+            <span class="choice-cell">Wait, what? +2</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">Never know until you try +2</span>
+            <span class="choice-cell">It's out of our hands. +0</span>
+            <span class="choice-cell">We'll use force if we have to. +0</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 8 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">What if they start fighting? +0</span>
+            <span class="choice-cell">I doubt they’ll believe you. +0</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">Things turned out for the best. +3</span>
+            <span class="choice-cell">You deserved it. +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 3</span>
+            <span class="choice-cell">All I did was watch. +3</span>
+            <span class="choice-cell">Are you gonna pay me back? +2</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 4</span>
+            <span class="choice-cell">But I was just standing here… +2</span>
+            <span class="choice-cell">You weren’t cool though. +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">You did a great job. +0</span>
+            <span class="choice-cell">So. Closed case? +2</span>
+            <span class="choice-cell">We make a good team too. +0</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2>Rank 9 Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">Are you satisfied now? +3</span>
+            <span class="choice-cell">Not Running? +2</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">What did you say? +2</span>
+            <span class="choice-cell">Do you have any time for that? +2</span>
+            <span class="choice-cell">Don’t do it. +3</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 3</span>
+            <span class="choice-cell">You’re Right. +3</span>
+            <span class="choice-cell">I never realized that. +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 4</span>
+            <span class="choice-cell">I agree. +2</span>
+            <span class="choice-cell">Be more specific. +0</span>
+            <span class="choice-cell">And where is this place? +0</span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Followup</span>
+            <span class="choice-cell">Congratulations. +2</span>
+            <span class="choice-cell">Got him under control, how? +0</span>
+            <span class="choice-cell">Better watch out for them. +2</span>
+          </li>
+        </ul>
+      </div>
+      <h2>Rank Max Choices</h2>
+
+      <div class="table-scroll">
+        <ul class="rank-dialogue">
+          <li class="rank-row">
+            <span class="rank-label">Response 1</span>
+            <span class="choice-cell">I’m looking forward to it. +3</span>
+            <span class="choice-cell">We can’t lose either. +3</span>
+            <span class="choice-cell"></span>
+          </li>
+
+          <li class="rank-row">
+            <span class="rank-label">Response 2</span>
+            <span class="choice-cell">You’re welcome. +0</span>
+            <span class="choice-cell">It’s all because of you. +0</span>
+            <span class="choice-cell"></span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="note">
+        *Rank Max Arcana Unlocks The Ultimate Chariot Persona "Chi You".*
+      </p>
+    </main>
+  </body>
+</html>
